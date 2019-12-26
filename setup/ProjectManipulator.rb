@@ -15,13 +15,13 @@ module Pod
       @platform = options.fetch(:platform)
       @remove_demo_target = options.fetch(:remove_demo_project)
       @prefix = options.fetch(:prefix)
-      puts 'LOG START:---------------'
-      puts @xcodeproj_path
-      puts @configurator
-      puts @platform
-      puts @remove_demo_target
-      puts @prefix
-      puts 'LOG END:---------------'
+      # puts 'LOG START:---------------'
+      # puts @xcodeproj_path
+      # puts @configurator
+      # puts @platform
+      # puts @remove_demo_target
+      # puts @prefix
+      # puts 'LOG END:---------------'
     end
 
     def run
