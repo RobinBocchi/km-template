@@ -134,13 +134,25 @@ module Pod
     end
 
     def github_user_name
+      mail = github_user_mail
+      name = ''
+      if mail 
+        nameArray = mail.split('@')
+        if nameArray.length>0
+          name = nameArray[0]
+        end
+      end
+      return name.empty? ? nil : name;
+    end
+
+    def github_user_mail
       github_user_name = `security find-internet-password -s github.com | grep acct | sed 's/"acct"<blob>="//g' | sed 's/"//g'`.strip
       is_valid = github_user_name.empty? or github_user_name.include? '@'
       return is_valid ? nil : github_user_name
     end
 
     def user_email
-      (ENV['GIT_COMMITTER_EMAIL'] || `git config user.email`).strip
+      (ENV['GIT_COMMITTER_EMAIL'] || github_user_mail || `git config user.email`).strip
     end
 
     def year
